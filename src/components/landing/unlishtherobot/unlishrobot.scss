@@ -1,0 +1,31 @@
+.main-Xenoverse {
+    .bullRight {
+        border-radius: 10px;
+        height: 400px;
+    }
+    input{
+        border-radius: 10px;
+    }
+    button{
+        border-radius: 10px;
+    }
+    .color-Back{
+        height: 23px;
+        background-color: #4f1310;
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: -21px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .main-Xenoverse {
+        text-align: center;
+    }
+    .width-100 {
+        width: 100%;
+    }
+    .main-Xenoverse .bullRight {
+        border-radius: 10px;
+        height: 258px;
+      }
+}

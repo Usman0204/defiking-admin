@@ -1,0 +1,28 @@
+.main-banner {
+    background-image: url("../../../Assets/banner-bg.png") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 999;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.541);
+    // background-image: linear-gradient(180deg,rgba(255, 255, 255, 0.11),rgba(17, 17, 17, 0.26));
+
+
+    .bannerimo{
+        height: 300px;
+    }
+    .banrImgRight{
+        height:400px;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .main-banner {
+        text-align: center;
+    }
+    .main-banner .banrImgRight {
+        height: 250px;
+    }
+   
+}

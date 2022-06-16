@@ -1,0 +1,173 @@
+.common-main {
+    .row {
+        background: #000 !important;
+    }
+    .images {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        img {
+            // height: fit-content;
+            margin-top: 30px;
+            border: 1.5px solid transparent;
+            border-radius: 10px;
+            &:hover {
+                border-radius: 10px;
+                cursor: pointer;
+                border: 1.5px solid #924BFF;
+
+            }
+        }
+    }
+    .lightSpan span{
+        // font-size: small;
+        font-weight: lighter;
+    }
+    .nav-pills .nav-link {
+        padding: 30px;
+        background: #0e0e0e;
+        border: 1px solid #1f1f1f;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin: 0px 10px;
+    }
+    .timelineUl {
+        &::after {
+            content: "";
+            width: 100%;
+            height: 1px;
+            background-color: #3f3f4a;
+            position: absolute;
+            top: 175px;
+        }
+        li::after {
+            content: "";
+            width: 18px;
+            height: 18px;
+            border-radius: 100px;
+            background-color: #3f3f4a;
+            position: absolute;
+            top: 166px;
+        }
+    }
+    .impfilter {
+        filter: invert(19%) sepia(35%) saturate(0%) hue-rotate(249deg) brightness(23%) contrast(87%);
+    }
+    .nav-pills .nav-link.active,
+    .nav-pills .show > .nav-link {
+        color: #fff;
+        background: linear-gradient(152.28deg, #ff5f00 8.19%, #ffb244 122.8%);
+        img {
+            filter: invert(100%) sepia(15%) saturate(0%) hue-rotate(57deg) brightness(108%) contrast(101%);
+        }
+        .impfilter {
+            filter: invert(0);
+        }
+
+        li::after {
+            background-color: #924BFF;
+
+        }
+    }
+    .joinusBtn {
+        .btn-common {
+            padding: 6px 17px;
+            background: #924BFF;
+
+            border-radius: 50px;
+            margin: 10px 0;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+    }
+    .imageCover{
+        border-radius: 10px;
+    }
+    .robot{
+        font-size: 14px;
+    }
+    
+}
+@media (max-width: 991px) {
+    .common-main .nav-pills .nav-link {
+        padding: 19px;
+        background: #0e0e0e;
+        border: 1px solid #1f1f1f;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin: 0px 10px;
+    }
+    .common-main .timelineUl::after {
+        top: 223px;
+    }
+    .common-main .timelineUl li::after {
+        top: 215px;
+    }
+    .timelineUl {
+        margin-top: 76px;
+    }
+}
+@media (max-width: 768px) {
+    .common-main .timelineUl::after {
+        display: none;
+    }
+    .common-main .timelineUl li::after {
+        display: none;
+    }
+}
+@media (max-width: 601px) {
+    .common-main .row {
+        background: #000 !important;
+        margin-top: -64px;
+    }
+    .timelineUl {
+        margin-top: 6px;
+        display: flex;
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow: scroll;
+        /* margin-right: -6px; */
+    }
+    .timelineUl li{
+        margin-right: 21px;
+    }
+    .common-main .nav-pills .nav-link {
+        width: 96px;
+    }
+    .common-main .joinusBtn{
+        text-align: center;
+    }
+}
+@media (min-width:1000px) and (max-width:1199px) {
+    .common-main .images {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 74px;
+    }
+   
+}
+@media (min-width:991px) and (max-width:1199px) {
+    .common-main{
+        .col-xl-7 {
+            margin-top:89px
+        }
+    }
+}
+@media (min-width:768px) and (max-width:1000px) {
+    .common-main .images {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 53px;
+    }
+}
+
+ .customNavs{
+    flex-wrap: nowrap !important;
+    flex-wrap: nowrap;
+}

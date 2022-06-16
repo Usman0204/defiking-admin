@@ -1,0 +1,27 @@
+.main-banner-mint {
+    background-image: url('./../../Assets/bg-image.svg');
+    background-size: cover;
+    height: 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    .header{
+        text-align: center;
+        color: #fff;
+
+    }
+    .btn-set{
+        margin-top: 70px;
+
+    }
+    .stakedwallet{
+        color: #fff !important;
+        margin-top: 20px;
+    }
+  
+    .Tableclr{
+        margin-top: 20px;
+        color: #fff;
+    }
+}
+
+

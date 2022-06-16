@@ -1,0 +1,44 @@
+.main-stake {
+    
+    .img {
+        width: 80px;
+    }
+
+    .main-tile {
+        margin-bottom: 10px;
+        margin-top: 40px;
+        background: rgba(30, 32, 41, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-sizing: border-box;
+        backdrop-filter: blur(50px);
+        /* Note: backdrop-filter has minimal browser support */
+        
+        border-radius: 30px;
+padding: 30px 20px;
+border: 1px solid transparent;
+&:hover {
+    box-shadow: 5px 5px 30px rgba(240, 122, 61, 0.2);
+    border: 1px solid rgba(30, 32, 41, 0.4);
+}
+
+    }
+
+    .dropdown {
+        .btn {
+            background: transparent;
+            color: #fff;
+            border-bottom: 2px solid orange;
+            border-radius: 0;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    .main-features{
+        .inner-tile{
+            height: auto;
+        }
+    }
+}

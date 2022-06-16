@@ -1,0 +1,65 @@
+.nftperks-main {
+    .cardo{
+        height: 455px;
+        button{
+    position: absolute;
+    bottom: 20px;
+    left: 12%;
+        }
+    }
+    .img-container-div {
+        background-image: url("../../Assets/cardBg.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 2px solid #1a1a1a;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 0px;
+        text-align: center;
+        height: 230px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        img{
+            height: 100%;
+            object-fit: fill;
+        }
+    }
+    .btn-common-2 {
+        padding: 14px 30px;
+        background: #1a1a1a;
+        border-radius: 5px;
+        margin: 10px 0;
+        // padding: 10px 15px;
+        color: #474747;
+        text-decoration: none;
+        border: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        &:hover {
+            // background: #F88D21;
+            color: #fff !important;
+        }
+    }
+}
+
+// .modal-backdrop,.fade,.show{
+//         display: none;
+//     }
+label {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #c0c0c0 !important;
+    padding-top: 22px;
+}
+@media(max-width:601px){
+    .nftperks-main{
+        .img-container-div{
+            height: 280px;
+        }
+    }
+}

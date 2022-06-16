@@ -1,0 +1,269 @@
+
+
+  .skdj{
+    color: #fff;
+  }
+    .button-list {
+        p{
+            // font-family: ;
+        }
+      label {
+        font-family: "jost" !important;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px !important;
+        line-height: 12px;
+        text-transform: uppercase;
+        color: #000000 !important;
+        margin-bottom: 12px;
+      }
+      .main-same-buttons {
+      }
+      .main-same-img {
+        position: absolute;
+        right: 14px;
+        top: 8px;
+      }
+      .buttons-list-all {
+        position: relative;
+        .dropdown-menu {
+          width: 100% !important;
+          background: #0e1526 !important;
+          border-color: #353945 !important;
+          box-shadow: 0 4px 12px rgba(20, 20, 22, 10%) !important;
+          border-radius: 12px !important;
+          .dropdown-item {
+            color: #ffffff;
+            font-size: 14px;
+            &:hover {
+              background-color: #27324f;
+              color: #3772ff;
+              font-weight: 500;
+            }
+          }
+        }
+        h5 {
+        //   font-family: "jost";
+          font-style: normal;
+          font-weight: bold;
+          font-size: 12px;
+          line-height: 12px;
+          color: #000000;
+          padding-top: 32px;
+          padding-bottom: 10px;
+        }
+        .button-listing {
+          background-color: transparent;
+          outline: none;
+          border: 2px solid #e2e8f0;
+          box-sizing: border-box;
+          border-radius: 12px;
+        //   font-family: "jost";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px !important;
+          line-height: 24px;
+          color: #c7c8c8;
+          cursor: pointer;
+          width: 100%;
+          height: 48px;
+          p {
+            float: left;
+            padding-left: 10px;
+            // font-family: "jost";
+            color: #ffffff;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px !important;
+            line-height: 24px;
+            padding-top: 7px;
+          }
+        }
+      }
+    }
+    .MuiOutlinedInput-input {
+      height: 48px;
+      padding: 0.5px 14px;
+    //   font-family: "jost" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px !important;
+      line-height: 24px;
+      color: #475569;
+      &::placeholder {
+        font-family: "jost" !important;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px !important;
+        line-height: 24px;
+        color: #475569;
+      }
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border-radius: 12px;
+      border: 2px solid #e2e8f0 !important;
+    }
+    .form-contact {
+      margin-top: 32px;
+      border-bottom: 1px solid #e1e1e1;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+
+      // .main-text-feild-head{
+      //     margin-bottom: 32px;
+      // }
+      .form-group {
+        margin-bottom: 32px;
+
+        label {
+          font-family: "jost" !important;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 12px !important;
+          line-height: 12px;
+          text-transform: uppercase;
+          color: #000000 !important;
+          margin-bottom: 12px;
+        }
+      }
+      .new-row-no {
+        margin-bottom: 0px !important;
+      }
+    }
+  
+
+
+
+.merch-main {
+
+
+    .imgDiv {
+        background: #000000;
+        border: 2px solid #924BFF;
+
+        box-sizing: border-box;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .cardo:hover {
+        .img-container-div {
+            border: 2px solid #924BFF;
+
+            img {
+                transform: scale(1.1);
+                  transition: transform .5s ease-in-out;
+            }
+        }
+        .btn-common-2 {
+            background: #924BFF;
+
+            color: #fff !important;
+        }
+    }
+    .heading-div {
+        h2 {
+            color: #fff;
+        }
+        p {
+            color: #9098a1;
+        }
+    }
+    .btn-common-2 {
+        padding: 12px 30px;
+        background: transparent;
+        border: 1.5px solid #924BFF;
+
+        border-radius: 5px;
+        margin: 10px 0;
+        // padding: 10px 15px;
+        color: #924BFF;
+
+        text-decoration: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        &:hover {
+            background: #924BFF;
+
+            color: #fff !important;
+        }
+    }
+}
+.fotter-hide-top .main-footer {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: none;
+}
+.img-container-div {
+    background: #000000;
+    border: 2px solid #1a1a1a;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 29px;
+    text-align: center ;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img {
+        object-fit: cover;
+    }
+}
+.modal-body {
+    button {
+        background: #000000;
+        border: 2px solid transparent;
+        box-sizing: border-box;
+        border-radius: 10px;
+        color: #fff;
+        display: flex;
+        justify-content: center !important;
+        
+        &:hover {
+            border: 2px solid #924BFF;
+
+            color: #924BFF;
+
+        }
+       
+    }
+
+    //buy now
+    .imgDiv {
+        background: #000000;
+        border: 2px solid #1a1a1a;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 29px;
+        height: 340px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            object-fit: cover;
+        }
+    }
+    .btn-common-2 {
+        padding: 12px 30px;
+        background: #924BFF;
+
+        border-radius: 5px;
+        margin: 10px 0;
+        // padding: 10px 15px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        &:hover {
+            // background: #F88D21;
+            color: #fff !important;
+        }
+    }
+    p {
+        color: #9098a1;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
