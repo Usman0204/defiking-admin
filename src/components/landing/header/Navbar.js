@@ -173,16 +173,9 @@ const Navbar = () => {
 
                                 </ul>
                                 <div className="form-inline my-2 my-lg-0">
-                                    {/* <a href='https://www.twitter.com/drivenuniverse' className="" target="_blank">
-                                        <img src="hash-max-assets/header/twitter-icon.svg" className="img-fluid socialHeight" alt="" />
-                                    </a>
-                                    <a href='https://discord.gg/FFcVEp89' className="" target="_blank">
-                                        <img src="hash-max-assets/header/discord-icon.svg" className="img-fluid socialHeight" alt="" />
-                                    </a>
-                                    <a href='https://www.instagram.com/drivenuniverse/' className="" target="_blank">
-                                        <img src="hash-max-assets/header/instagram-icon.svg" className="img-fluid socialHeight" alt="" />
-                                    </a> */}
-                                    <button className='btn-common connectButton' data-toggle="modal" data-target="#exampleModalmerchf">{account ? "Disconnect Wallet" : "Connect Wallet" }</button>
+                                <button className='btn-common' data-toggle="modal" data-target="#exampleModalmerchf">{account ? "Disconnect Wallet" : "Connect Wallet" }</button>
+                                 
+                                   
                                 </div>
                             </div>
                             {/* } */}
