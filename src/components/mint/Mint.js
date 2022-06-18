@@ -178,7 +178,7 @@ const Mint = () => {
                 <h4>List of All Wallet Staked</h4>
               </div>
               <div className="Tableclr">
-              <Table striped bordered hover>
+              <Table striped bordered hover responsive>
                 <thead>
                   <tr>
                     <th>#</th>
@@ -205,8 +205,8 @@ const Mint = () => {
           </div>
 
           <div className="row">
-            <div className="col-lg-5">
-              <button className="btn btn-set">List of Wallets Pending payment (staked mini 14 days)</button>
+            <div className="col-lg-7">
+              <button className="btn btn-set">List of Wallets Pending payment <span style={{ fontSize:"12px"}} > (staked mini 14 days) </span></button>
             </div>
             <div className="col-lg-3">
               <button className="btn btn-set">Pay All</button>
@@ -217,7 +217,7 @@ const Mint = () => {
             <div className="col-lg-12">
              
               <div className="Tableclr">
-              <Table striped bordered hover>
+              <Table striped bordered hover responsive>
                 <thead>
                   <tr>
                     <th>#</th>
