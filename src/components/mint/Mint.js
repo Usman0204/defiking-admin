@@ -8,61 +8,52 @@ import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../../hooks/useAuth";
 import Navbar from "../landing/header/Navbar";
 import { Table } from 'react-bootstrap';
+import { DistributeMultiple } from '../../hooks/distributeMultiple'
 const Mint = () => {
   const { account } = useWeb3React();
-
+  const [date, setDate] = useState('');
+  const [dateend, setDateEnd] = useState('');
   const { login, logout } = useAuth();
-  const [stake, setStake] = useState([])
-  const [totaltoken, settotalstake]=useState(0);
+  const [stake, setStake] = useState([]);
+  const [stakefilter, setfilterdata] = useState([]);
+  const [totaltoken, settotalstake] = useState(0);
+  const [dataof, setdataof] = useState([0]);
+  const {DisperseMulti} = DistributeMultiple();
+  const [tokenAddy,settokenAddy]= useState('');
+  const [amount, setamount]= useState('');
   useEffect(async () => {
     getStakedNfts();
   }, []);
 
-  //const whitelisted = arr.find((e) => e === account);
-  // const allstakeddata = () => {
+  const handlePresaleEndDate = (e) => {
 
-  //   var data = JSON.stringify(
+    console.log("break", date)
+    setDateEnd(e.target.value)
+    const epochStartTime = new Date(date).getTime() / 1000.0;
+    const epochEndTime = new Date(dateend).getTime() / 1000.0;
+    console.log("epochStartTime", epochStartTime)
+    console.log("epochEndTime", epochEndTime);
+    let filerdata = [];
 
-  //     {
-  //       query: `enableAccountStakings{
-  //         id
-  //         transaction{
-  //           id
-  //           timestamp
-  //           blockNumber
-  //           blockHash
-  //           from
-  //           to
-  //           value
-  //           gasPrice
-  //         }
-  //         account
-  //         duration
-  //       }
-  //     }`,
+    for (let index = 0; index < stake.length; index++) {
+      if (stake[index].startTime >= epochStartTime && stake[index].endTime <= epochEndTime) {
+        console.log("im  here", stake[index]);
+        filerdata.push(stake[index]);
+        console.log(filerdata);
 
-  //       variables: {},
-  //     });
+        setfilterdata(filerdata)
+      }
 
-  //   var config = {
-  //     method: "post",
-  //     url: "https://api.thegraph.com/subgraphs/name/wasif28/defi-kings",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     data: data,
-  //   };
+    }
 
-  //   axios(config)
-  //     .then(function (response) {
-  //       // setBattleDetails(response.data.data.battleStarteds);
-  //       console.log("graph-data", response);
+  }
 
-  //     })
-  //     .catch(function (error) {
+  const handleChangeDate = (e) => {
+    setDate(e.target.value)
 
-  //     });
-  // };
+
+  }
+
 
   const getStakedNfts = () => {
     let account0 = "0xD653672D46F04bBAea506b1e126580f790e3ff25";
@@ -94,24 +85,43 @@ const Mint = () => {
 
     axios(config)
       .then(function (response) {
-        var dumb=0;
+        var dumb = 0;
         let stak = response.data?.data?.stakes;
         setStake(stak);
         for (let index = 0; index < response.data?.data?.stakes.length; index++) {
-          dumb =  dumb +  parseInt (response.data?.data?.stakes[index].amount);
-          
+          dumb = dumb + parseInt(response.data?.data?.stakes[index].amount);
+
         }
-       settotalstake(dumb);
-       console.log("heeee ,,,,,,,",totaltoken)
+        settotalstake(dumb);
+        console.log("heeee ,,,,,,,", totaltoken)
       })
       .catch(function (error) {
         console.log(error);
       });
-     
-     
+
+
   };
 
+  const makepayment = async() => {
 
+    console.log("tokenaddy", tokenAddy);
+    console.log("amount", amount);
+    var datas = [];
+    console.log("here it is", stakefilter)
+    for (const elem of stakefilter) {
+      datas.push(elem?.account)
+    }
+    console.log("filterdata", datas)
+    var valarr=[];
+    var newarr= amount/datas.length;
+    for (const elem of stakefilter) {
+      valarr.push(newarr)
+    }
+
+    console.log("second",valarr)
+
+    let res= await DisperseMulti(tokenAddy,datas,valarr)
+  }
 
 
   return (
@@ -128,22 +138,22 @@ const Mint = () => {
                 <h3>DEFI KINGS TRACKER  & BONUS PAY DASHBOARD</h3>
               </div>
             </div>
-          </div>
-          <div className="row">
+
+            {/* <div className="row"> */}
             {/* <div className="col-lg-3">
               <button className="btn btn-set">Add Funds</button>
             </div> */}
-            <div className="col-lg-3">
+            {/* <div className="col-lg-3">
               <button className="btn btn-set">Pay Now</button>
-            </div>
+            </div> */}
             {/* <div className="col-lg-3">
               <button className="btn btn-set">Set Auto Pay</button>
             </div> */}
             <div className="col-lg-4">
-              <button className="btn btn-set">Staked Token:  <span style={{fontSize:'12px'}}>{totaltoken / 10**9}  $DFK</span> </button>
+              <button className="btn btn-set">Staked Token:  <span style={{ fontSize: '12px' }}>{totaltoken / 10 ** 9}  $DFK</span> </button>
             </div>
+            {/* </div> */}
           </div>
-
           <div className="row">
             <div className="col-lg-12">
               <div className="stakedwallet">
@@ -165,11 +175,11 @@ const Mint = () => {
                       const { id } = elem;
                       return (
                         <tr index={key}>
-                          <td>{key}</td>
+                          <td>{key + 1}</td>
                           <td>{elem?.account}</td>
-                            <td>{elem?.amount / 10**9}</td>
-                            <td>{new Date(elem.startTime * 1000).toUTCString()}</td>
-                            <td>{new Date(elem.endTime * 1000).toUTCString()}</td>
+                          <td>{elem?.amount / 10 ** 9}</td>
+                          <td>{new Date(elem.startTime * 1000).toUTCString()}</td>
+                          <td>{new Date(elem.endTime * 1000).toUTCString()}</td>
                         </tr>
                       )
                     })
@@ -184,12 +194,46 @@ const Mint = () => {
 
           <div className="row">
             <div className="col-lg-7">
-              <button className="btn btn-set">List of Wallets Pending payment <span style={{ fontSize: "12px" }} > (staked mini 14 days) </span></button>
+              <button className="btn btn-set">List of Wallets for payment <span style={{ fontSize: "12px" }} > (staked mini 14 days) </span></button>
             </div>
-            <div className="col-lg-3">
+            {/* <div className="col-lg-3">
               <button className="btn btn-set">Pay All</button>
-            </div>
+            </div> */}
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="example">Stake Start Time<span>*</span></label>
+                <br></br>
+                <div class="sd-container">
 
+                  <input class="sd"
+                    type="date"
+                    value={date}
+                    onChange={handleChangeDate}
+                    id="party" type="datetime-local" name="partydate"  ></input>
+                  <span class="open-button">
+                    <button type="button">📅</button>
+                  </span>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="example">Stake End Time<span>*</span></label>
+                <br></br>
+                <div class="sd-container">
+                  <input class="sd"
+                    type="date"
+                    value={dateend}
+                    onChange={handlePresaleEndDate}
+                    id="party" type="datetime-local" name="partydate" ></input>
+                  <span class="open-button">
+                    <button type="button">📅</button>
+                  </span>
+
+                </div>
+              </div>
+            </div>
           </div>
           <div className="row">
             <div className="col-lg-12">
@@ -198,7 +242,7 @@ const Mint = () => {
                 <Table striped bordered hover responsive>
                   <thead>
                     <tr>
-                    <th>#</th>
+                      <th>#</th>
                       <th>Wallet Address</th>
                       <th>Amount</th>
                       <th>Start Time</th>
@@ -207,12 +251,20 @@ const Mint = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      {/* <td>1</td>
-                      <td>0x39bb0E2FDc2dC86f76c2c1Fe9e54744DEFcFf0E7</td> */}
+                    {stakefilter?.map((elem, key) => {
+                      const { id } = elem;
+                      return (
+                        <tr index={key}>
+                          <td>{key + 1}</td>
+                          <td>{elem?.account}</td>
+                          <td>{elem?.amount / 10 ** 9}</td>
+                          <td>{new Date(elem.startTime * 1000).toUTCString()}</td>
+                          <td>{new Date(elem.endTime * 1000).toUTCString()}</td>
+                        </tr>
+                      )
+                    })
+                    }
 
-                    </tr>
-                 
 
                   </tbody>
                 </Table>
@@ -221,10 +273,34 @@ const Mint = () => {
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <button className="btn btn-set">Clear Pending List Without Payment</button>
+              <button className="btn btn-set" data-toggle="modal" data-target="#exampleModalmerchfdd" >Pay</button>
             </div>
 
           </div>
+
+           {/* //wallet connect modal */}
+           <div class="modal fade" id="exampleModalmerchfdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-wallet">
+                    <div class="modal-content">
+                       <h3 className="p-4 text-center" style={{color:'white'}}>Set Token to Make Payment</h3>
+                        <div class="modal-body p-4 text-center">
+                            <button className='w-100 ' type='button' >
+                                <div className="row pb-2 pt-1">
+                                 <label>Enter Token address for Reward</label>
+                                 <input type="text" className="form-control" style={{color:'#000'}}    onChange={(e) => settokenAddy(e.target.value)}  ></input>
+                                 <label>Enter Amount to distribute all Address</label>
+                                 <input type="text" className="form-control" style={{color:'#000'}}  onChange={(e) => setamount(e.target.value)}></input>
+                                </div>
+
+
+                            </button>
+                            
+                          
+                        </div>
+                        <button className="btn btn-success text-center" onClick={makepayment}>Pay</button>
+                    </div>
+                </div>
+            </div>
         </div>
       </section>
       {/* <Footer /> */}

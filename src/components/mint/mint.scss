@@ -33,3 +33,23 @@ overflow-y: scroll;
 -webkit-overflow-scrolling: touch;
 -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+.sd-container {
+    position: relative;
+    float: left;
+    width: 100%;
+    cursor: pointer;
+  }
+ .sd-container input{
+    /* color: rgba(255, 255, 255, 0.2); */
+    color: #fff;
+    padding-right: 20px!important;
+    cursor: pointer;
+  }
+  .sd {
+    border: 1px solid #1cbaa5;
+    padding: 5px 10px;
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+  }
