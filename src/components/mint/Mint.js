@@ -59,7 +59,7 @@ const Mint = () => {
     let account0 = "0xD653672D46F04bBAea506b1e126580f790e3ff25";
     var data = JSON.stringify({
       query: `{
-        stakes{
+        stakes(first:1000){
             id
             account
             amount
