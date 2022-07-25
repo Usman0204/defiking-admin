@@ -9,6 +9,7 @@ import useAuth from "../../hooks/useAuth";
 import Navbar from "../landing/header/Navbar";
 import { Table } from 'react-bootstrap';
 import { DistributeMultiple } from '../../hooks/distributeMultiple'
+import moment from 'moment'
 const Mint = () => {
   const { account } = useWeb3React();
   const [date, setDate] = useState('');
@@ -24,7 +25,9 @@ const Mint = () => {
   useEffect(async () => {
     getStakedNfts();
   }, []);
-
+  var datestr= new Date();
+  var unixTimestamp = moment(datestr, 'YYYY.MM.DD').unix();
+  console.log(unixTimestamp,"hereeee");
   const handlePresaleEndDate = (e) => {
 
     console.log("break", date)
@@ -87,9 +90,17 @@ const Mint = () => {
       .then(function (response) {
         var dumb = 0;
         let stak = response.data?.data?.stakes;
-        setStake(stak);
+        var newarr=[];
         for (let index = 0; index < response.data?.data?.stakes.length; index++) {
-          dumb = dumb + parseInt(response.data?.data?.stakes[index].amount);
+          if(unixTimestamp-response.data?.data?.stakes[index].startTime<=1209600){
+             newarr.push(response.data?.data?.stakes[index])
+          }
+          
+        }
+        console.log(newarr,"i m there too")
+          setStake(newarr);
+        for (let index = 0; index < newarr.length; index++) {
+          dumb = dumb + parseInt(newarr[index].amount);
 
         }
         settotalstake(dumb);
@@ -194,12 +205,12 @@ const Mint = () => {
 
           <div className="row">
             <div className="col-lg-7">
-              <button className="btn btn-set">List of Wallets for payment <span style={{ fontSize: "12px" }} > (staked mini 14 days) </span></button>
+              <button className="btn btn-set" data-toggle="modal" data-target="#exampleModalmerchfdd">Make payment to Wallets <span style={{ fontSize: "12px" }} > (staked mini 14 days) </span></button>
             </div>
             {/* <div className="col-lg-3">
               <button className="btn btn-set">Pay All</button>
             </div> */}
-            <div class="col-lg-6">
+            {/* <div class="col-lg-6">
               <div class="form-group">
                 <label for="example">Stake Start Time<span>*</span></label>
                 <br></br>
@@ -233,9 +244,9 @@ const Mint = () => {
 
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
-          <div className="row">
+          {/* <div className="row">
             <div className="col-lg-12">
 
               <div className="Tableclr">
@@ -273,10 +284,10 @@ const Mint = () => {
           </div>
           <div className="row">
             <div className="col-lg-6">
-              <button className="btn btn-set" data-toggle="modal" data-target="#exampleModalmerchfdd" >Pay</button>
+              <button className="btn btn-set"  >Pay</button>
             </div>
 
-          </div>
+          </div> */}
 
            {/* //wallet connect modal */}
            <div class="modal fade" id="exampleModalmerchfdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
