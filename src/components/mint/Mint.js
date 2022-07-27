@@ -10,6 +10,7 @@ import Navbar from "../landing/header/Navbar";
 import { Table } from 'react-bootstrap';
 import { DistributeMultiple } from '../../hooks/distributeMultiple'
 import moment from 'moment'
+import BigNumber from 'bignumber.js';
 const Mint = () => {
   const { account } = useWeb3React();
   const [date, setDate] = useState('');
@@ -19,15 +20,15 @@ const Mint = () => {
   const [stakefilter, setfilterdata] = useState([]);
   const [totaltoken, settotalstake] = useState(0);
   const [dataof, setdataof] = useState([0]);
-  const {DisperseMulti} = DistributeMultiple();
-  const [tokenAddy,settokenAddy]= useState('');
-  const [amount, setamount]= useState('');
+  const { DisperseMulti } = DistributeMultiple();
+  const [tokenAddy, settokenAddy] = useState('');
+  const [amount, setamount] = useState('');
   useEffect(async () => {
     getStakedNfts();
   }, []);
-  var datestr= new Date();
+  var datestr = new Date();
   var unixTimestamp = moment(datestr, 'YYYY.MM.DD').unix();
-  console.log(unixTimestamp,"hereeee");
+  console.log(unixTimestamp, "hereeee");
   const handlePresaleEndDate = (e) => {
 
     console.log("break", date)
@@ -44,7 +45,7 @@ const Mint = () => {
         filerdata.push(stake[index]);
         console.log(filerdata);
 
-        setfilterdata(filerdata)
+        // setfilterdata(filerdata)
       }
 
     }
@@ -90,15 +91,16 @@ const Mint = () => {
       .then(function (response) {
         var dumb = 0;
         let stak = response.data?.data?.stakes;
-        var newarr=[];
+        var newarr = [];
         for (let index = 0; index < response.data?.data?.stakes.length; index++) {
-          if(unixTimestamp-response.data?.data?.stakes[index].startTime<=1209600){
-             newarr.push(response.data?.data?.stakes[index])
+          if (unixTimestamp - response.data?.data?.stakes[index].startTime <= 1209600) {
+            newarr.push(response.data?.data?.stakes[index])
           }
-          
+
         }
-        console.log(newarr,"i m there too")
-          setStake(newarr);
+        setfilterdata(newarr)
+        console.log(newarr, "i m there too")
+        setStake(newarr);
         for (let index = 0; index < newarr.length; index++) {
           dumb = dumb + parseInt(newarr[index].amount);
 
@@ -113,25 +115,38 @@ const Mint = () => {
 
   };
 
-  const makepayment = async() => {
+  const makepayment = async () => {
 
     console.log("tokenaddy", tokenAddy);
     console.log("amount", amount);
     var datas = [];
+    var dumb = 0;
+    var totalper=0;
+    var weightage=0;
     console.log("here it is", stakefilter)
     for (const elem of stakefilter) {
       datas.push(elem?.account)
     }
     console.log("filterdata", datas)
-    var valarr=[];
-    var newarr= amount/datas.length;
+    var valarr = [];
+    var newarr = (amount / datas).length;
+
     for (const elem of stakefilter) {
-      valarr.push(newarr)
+      
+      totalper += parseFloat(elem.amountPercentageTotal);
     }
 
-    console.log("second",valarr)
+    console.log("percentagetoral", totalper);
 
-    let res= await DisperseMulti(tokenAddy,datas,valarr)
+    for (const elem of stakefilter) {
+      weightage =  parseFloat(elem.amountPercentageTotal/totalper)
+      let amount1= (parseInt(amount) * weightage)
+     valarr.push(parseInt(amount1))
+     dumb = dumb + amount1
+    }
+    console.log("here www", valarr )
+  
+   let res= await DisperseMulti(tokenAddy,datas, valarr)
   }
 
 
@@ -205,7 +220,7 @@ const Mint = () => {
 
           <div className="row">
             <div className="col-lg-7">
-              <button className="btn btn-set" data-toggle="modal" data-target="#exampleModalmerchfdd">Make payment to Wallets <span style={{ fontSize: "12px" }} > (staked mini 14 days) </span></button>
+              <button className="btn btn-set" data-toggle="modal" data-target="#exampleModalmerchfdd">Make payment to Wallets <span style={{ fontSize: "12px" }} > </span></button>
             </div>
             {/* <div className="col-lg-3">
               <button className="btn btn-set">Pay All</button>
@@ -289,29 +304,29 @@ const Mint = () => {
 
           </div> */}
 
-           {/* //wallet connect modal */}
-           <div class="modal fade" id="exampleModalmerchfdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-wallet">
-                    <div class="modal-content">
-                       <h3 className="p-4 text-center" style={{color:'white'}}>Set Token to Make Payment</h3>
-                        <div class="modal-body p-4 text-center">
-                            <button className='w-100 ' type='button' >
-                                <div className="row pb-2 pt-1">
-                                 <label>Enter Token address for Reward</label>
-                                 <input type="text" className="form-control" style={{color:'#000'}}    onChange={(e) => settokenAddy(e.target.value)}  ></input>
-                                 <label>Enter Amount to distribute all Address</label>
-                                 <input type="text" className="form-control" style={{color:'#000'}}  onChange={(e) => setamount(e.target.value)}></input>
-                                </div>
-
-
-                            </button>
-                            
-                          
-                        </div>
-                        <button className="btn btn-success text-center" onClick={makepayment}>Pay</button>
+          {/* //wallet connect modal */}
+          <div class="modal fade" id="exampleModalmerchfdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-wallet">
+              <div class="modal-content">
+                <h3 className="p-4 text-center" style={{ color: 'white' }}>Set Token to Make Payment</h3>
+                <div class="modal-body p-4 text-center">
+                  <button className='w-100 ' type='button' >
+                    <div className="row pb-2 pt-1">
+                      <label>Enter Token address for Reward</label>
+                      <input type="text" className="form-control" style={{ color: '#000' }} onChange={(e) => settokenAddy(e.target.value)}  ></input>
+                      <label>Enter Amount to distribute all Address</label>
+                      <input type="text" className="form-control" style={{ color: '#000' }} onChange={(e) => setamount(e.target.value)}></input>
                     </div>
+
+
+                  </button>
+
+
                 </div>
+                <button className="btn btn-success text-center" onClick={makepayment}>Pay</button>
+              </div>
             </div>
+          </div>
         </div>
       </section>
       {/* <Footer /> */}
