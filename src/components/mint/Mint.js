@@ -141,7 +141,8 @@ const Mint = () => {
     for (const elem of stakefilter) {
       weightage =  parseFloat(elem.amountPercentageTotal/totalper)
       let amount1= (parseInt(amount) * weightage)
-     valarr.push(new BigNumber(amount1).multipliedBy(new BigNumber(10).pow(18)))
+      var amount2= parseFloat(amount1).toFixed(2);
+     valarr.push(new BigNumber(amount2).multipliedBy(new BigNumber(10).pow(18)))
      dumb = dumb + amount1
     }
     console.log("here www", valarr )
