@@ -15,9 +15,16 @@ export const DistributeMultiple = () => {
       try {
          
 
-        for (let elem = 0; elem < userPrices.length; elem++) {
+        // for (let elem = 0; elem < userPrices.length; elem++) {
+        //   userPrices[elem] = web3.utils.toWei(
+        //     JSON.stringify(userPrices[elem]), 'ether'
+        //   )
+         
+        // }
+
+         for (let elem = 0; elem < userPrices.length; elem++) {
           userPrices[elem] = web3.utils.toWei(
-            JSON.stringify(userPrices[elem]), 'ether'
+            JSON.stringify(userPrices[elem].toNumber()), 'ether'
           )
          
         }
